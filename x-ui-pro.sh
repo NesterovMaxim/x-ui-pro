@@ -602,7 +602,7 @@ if [[ -f $XUIDB ]]; then
       "limitIp": 0,
       "totalGB": 0,
       "expiryTime": 0,
-      "enable": true,
+      "enable": false,
       "tgId": "",
       "subId": "first",
       "reset": 0,
@@ -693,7 +693,7 @@ if [[ -f $XUIDB ]]; then
       "limitIp": 0,
       "totalGB": 0,
       "expiryTime": 0,
-      "enable": true,
+      "enable": false,
       "tgId": "",
       "subId": "first",
       "reset": 0,
@@ -755,7 +755,7 @@ if [[ -f $XUIDB ]]; then
       "limitIp": 0,
       "totalGB": 0,
       "expiryTime": 0,
-      "enable": true,
+      "enable": false,
       "tgId": "",
       "subId": "first",
       "reset": 0,
@@ -835,7 +835,7 @@ if [[ -f $XUIDB ]]; then
       "comment": "",
       "created_at": 1756726925000,
       "email": "firstT",
-      "enable": true,
+      "enable": false,
       "expiryTime": 0,
       "limitIp": 0,
       "password": "${trojan_pass}",
@@ -1102,8 +1102,9 @@ sed -i "s|sub.legiz.ru|$domain/$sub2singbox_path|g" "$DEST_FILE_SUB_PAGE"
 #sed -i -e "s|https://t.me/gozargah_marzban|$tg_escaped_link|g" -e "s|https://github.com/Gozargah/Marzban#donation|$tg_escaped_link|g" "$DEST_FILE_SUB_PAGE"
 
 ######################cronjob for ssl/reload service/cloudflareips######################################
-crontab -l | grep -v "certbot\|x-ui\|cloudflareips" | crontab -
+crontab -l | grep -v "sub2sing\|certbot\|x-ui\|cloudflareips" | crontab -
 (crontab -l 2>/dev/null; echo '@reboot /usr/bin/sub2sing-box server --bind 127.0.0.1 --port 8080 > /dev/null 2>&1') | crontab -
+(crontab -l 2>/dev/null; echo '0 3 * * 1 wget -O /usr/local/x-ui/bin/geosite.dat https://github.com/v2fly/geosite/releases/latest/download/geosite.dat && wget -O /usr/local/x-ui/bin/geoip.dat https://github.com/v2fly/geoip/releases/latest/download/geoip.dat > /dev/null 2>&1') | crontab -
 (crontab -l 2>/dev/null; echo '@daily x-ui restart > /dev/null 2>&1 && nginx -s reload;') | crontab -
 (crontab -l 2>/dev/null; echo '@monthly certbot renew --nginx --non-interactive --post-hook "nginx -s reload" > /dev/null 2>&1;') | crontab -
 ##################################ufw###################################################################
